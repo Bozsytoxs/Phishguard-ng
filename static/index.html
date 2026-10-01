@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0f4c45">
+  <title>PhishGuard NG – Detect. Understand. Stay Safe.</title>
+  <meta name="description" content="Paste a suspicious WhatsApp, SMS or email message and get a clear risk score, the red flags we found, and what to do next.">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" data-link>PhishGuard <span>NG</span></a>
+    <nav aria-label="Main">
+      <a href="/check" data-link>Check</a>
+      <a href="/awareness" data-link>Awareness</a>
+      <a href="/about" data-link>About</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- HOME -->
+    <section class="view" id="view-home">
+      <div class="hero">
+        <div class="hero-copy">
+          <h1>Got a message that feels off? Check it before you act.</h1>
+          <p class="lead">Paste a WhatsApp, SMS or email message. PhishGuard NG shows a risk score, the exact red flags it found, and what to do next. It works on your phone and needs no account.</p>
+          <a class="btn primary" href="/check" data-link>Check a message</a>
+          <p class="fine">Free. Your message is analysed on our server and not stored.</p>
+        </div>
+        <figure class="sample" aria-label="Example scam message with red flags highlighted">
+          <div class="bubble">
+            <p>Hi Mum, <mark>this is my new number</mark>. My old phone got stolen. Please save it and <mark>send ₦45,000 urgently</mark>, I will explain later. <mark>Don’t tell Daddy.</mark></p>
+            <span class="time">9:41</span>
+          </div>
+          <figcaption>
+            <ul>
+              <li><b>New number story.</b> Scammers pose as family on a number you don’t know.</li>
+              <li><b>Urgent money.</b> A specific amount, sent fast, to avoid questions.</li>
+              <li><b>Secrecy.</b> Nobody is left to warn you.</li>
+            </ul>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- CHECK -->
+    <section class="view" id="view-check" hidden>
+      <div class="panel">
+        <h1>Check a message</h1>
+        <p class="lead">Paste the full message exactly as you received it.</p>
+        <label for="msg">Message</label>
+        <textarea id="msg" rows="8" maxlength="5000" placeholder="Paste the WhatsApp, SMS or email text here…" aria-describedby="msg-error"></textarea>
+        <p class="error" id="msg-error" role="alert" hidden></p>
+        <label for="url">Link in the message <span class="opt">(optional)</span></label>
+        <input id="url" type="text" inputmode="url" autocomplete="off" placeholder="https://…">
+        <button class="btn primary" id="analyse-btn" type="button">Analyse message</button>
+        <p class="error" id="api-error" role="alert" hidden></p>
+        <div class="examples">
+          <span>Not sure how it works? Try an example:</span>
+          <button type="button" class="linkbtn" data-example="family">Family emergency</button>
+          <button type="button" class="linkbtn" data-example="job">Job fee</button>
+          <button type="button" class="linkbtn" data-example="otp">OTP request</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULTS -->
+    <section class="view" id="view-results" hidden>
+      <div class="panel">
+        <div class="banner" id="banner" role="status">
+          <p class="level" id="r-level"></p>
+          <p class="scoreline"><span id="r-score"></span> out of 100</p>
+          <div class="meter" aria-hidden="true"><div id="r-meter"></div></div>
+          <p id="r-summary"></p>
+        </div>
+
+        <h2>Why we gave this score</h2>
+        <ul class="flags" id="r-flags"></ul>
+        <p class="note" id="r-mode"></p>
+
+        <h2>What to do now</h2>
+        <ol class="advice" id="r-advice"></ol>
+
+        <button class="btn primary" id="again-btn" type="button">Check another message</button>
+        <p class="fine" id="r-disclaimer"></p>
+      </div>
+    </section>
+
+    <!-- AWARENESS -->
+    <section class="view" id="view-awareness" hidden>
+      <div class="panel wide">
+        <h1>Six scams to recognise</h1>
+        <p class="lead">Most scams in Nigeria follow one of these patterns. Know them and you can spot them quickly.</p>
+        <div class="tips">
+          <article class="tip"><h2>“Hi Mum, new number” emergencies</h2>
+            <p><b>Looks like:</b> a message from “your child” on an unknown number, asking for money because their phone is lost or damaged.</p>
+            <p><b>Do:</b> call the old number or another relative before sending anything.</p></article>
+          <article class="tip"><h2>Jobs that charge fees</h2>
+            <p><b>Looks like:</b> a job or scholarship offer that asks for registration, form or training money.</p>
+            <p><b>Do:</b> walk away. Genuine employers do not charge to hire you.</p></article>
+          <article class="tip"><h2>OTP and verification codes</h2>
+            <p><b>Looks like:</b> “I sent my code to your number by mistake, please send it back.”</p>
+            <p><b>Do:</b> never share a code. It gives the sender access to your account.</p></article>
+          <article class="tip"><h2>Fake supplier invoices</h2>
+            <p><b>Looks like:</b> a supplier suddenly changes their bank account and asks you to pay today.</p>
+            <p><b>Do:</b> confirm by calling a number you already have, not the one on the invoice.</p></article>
+          <article class="tip"><h2>Investments that double your money</h2>
+            <p><b>Looks like:</b> “Invest ₦50,000 and get ₦200,000 in a week, guaranteed.”</p>
+            <p><b>Do:</b> no real investment guarantees profit. Avoid chat-group schemes.</p></article>
+          <article class="tip"><h2>Lookalike links</h2>
+            <p><b>Looks like:</b> a bank or network name with extra hyphens or a strange ending, like .xyz or .top.</p>
+            <p><b>Do:</b> type the official address yourself or use the official app.</p></article>
+        </div>
+        <a class="btn primary" href="/check" data-link>Check a message</a>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="view" id="view-about" hidden>
+      <div class="panel wide">
+        <h1>How PhishGuard NG works</h1>
+        <p class="lead">Built by Team CyberShield NG for Nascomsoft Hackathon 2.0.</p>
+        <ol class="steps">
+          <li><h2>Paste</h2><p>Copy the message you received, and the link if there is one.</p></li>
+          <li><h2>We analyse</h2><p>Rules tuned to Nigerian scams look for red flags. A small machine-learning model, running on the server with no paid API, adds a second opinion.</p></li>
+          <li><h2>You decide</h2><p>You get a risk level, the reasons behind it, and clear next steps.</p></li>
+        </ol>
+        <p class="note">PhishGuard NG can miss scams and can sometimes flag real messages. Treat it as a second pair of eyes, not a guarantee.</p>
+
+        <h2>Team CyberShield NG</h2>
+        <ul class="team">
+          <li><b>J. S. Tapkum</b><span>Cybersecurity</span><a href="tel:08058241524">08058241524</a></li>
+          <li><b>Markus Godwin</b><span>AI / Machine Learning</span><a href="tel:09011657959">09011657959</a></li>
+          <li><b>Habila Injine</b><span>Cybersecurity</span><a href="tel:07084986323">07084986323</a></li>
+          <li><b>Hussaini Muhammad Nasir</b><span>Data Science &amp; ML</span><a href="tel:08144584805">08144584805</a></li>
+          <li><b>Umar Faruq</b><span>Cybersecurity</span><a href="tel:09137195754">09137195754</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer><p>PhishGuard NG · Detect. Understand. Stay Safe.</p></footer>
+  <script src="/static/app.js"></script>
+</body>
+</html>
